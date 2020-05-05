@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body> 
+        <input type="text" name="nome">
+        <button onclick="adicionar()">add</button>
+            <div id="box">
+                <ul id="list">
+
+                </ul>
+            </div>
+          
+        <script>
+            
+            var nomes = ["Diego", "Gabriel","Lucas",];
+
+            function nomesVet(vetor){
+            for (var recebe of nomes){
+
+                //var elementUl= document.createElement('ul');
+                var elementLi = document.createElement('li');
+                var elementTxt = document.createTextNode(recebe);
+                //elemento pai nesse caso eo elementLi q e pai do elementTxt
+                elementLi.appendChild(elementTxt)
+                //elemento pai nessa caso eo elementUl q e pai do elementLi q ja conte o texto
+               // elementUl.appendChild(elementLi);
+                //especifica o elemento pai onde o html sera inserido
+                var containerCorp = document.querySelector('#list');
+                //containerCorp.appendChild(elementUl);
+                containerCorp.appendChild(elementLi);
+                
+            }
+        }
+            nomesVet(nomes);
+            
+            function adicionar(){
+                var getInput = document.querySelector('input[name=nome]');
+                //pega valor dentro do input
+                var recebeInput = getInput.value;  
+
+                //var elementUl= document.createElement('ul');
+                var elementLi = document.createElement('li');
+                var elementTxt = document.createTextNode(recebeInput);
+                //elemento pai nesse caso eo elementLi q e pai do elementTxt
+                elementLi.appendChild(elementTxt)
+                //elemento pai nessa caso eo elementUl q e pai do elementLi q ja conte o texto
+               // elementUl.appendChild(elementLi);
+                //especifica o elemento pai onde o html sera inserido
+                var containerCorp = document.querySelector('#list');
+                //containerCorp.appendChild(elementUl);
+                containerCorp.appendChild(elementLi);
+
+                //limpar input apos cliar botao
+                if(recebeInput !=''){
+                    getInput.value='';
+                }
+             
+            }
+
+        </script>    
+    </body>
+</html>

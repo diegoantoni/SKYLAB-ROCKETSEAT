@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body>
+        <script>
+           // AND (E)
+            var sexo = 'F', idade = 23;
+
+            if(sexo ==='M' && idade >= 18){
+                console.log('OK - operador and (e)');
+            }
+
+            //OR (ou)
+            if(sexo ==='M' || idade >= 18){
+                console.log('OK - operador OR || (ou)');
+            }
+
+            //NOT (nao ou negação) verificar se nao e do mesmo sexo e do mesmo tipo
+            if(sexo !== 'M'){
+                console.log('OK operador not !== testa se e nao igual e nem do msm tipo');
+            }
+             //NOT (nao ou negação) verificar se nao e do mesmo sexo independente do tipo
+             if(sexo != 'M'){
+                 console.log('Ok operador not != testa se nao e igual independente do tipo');
+             }            
+
+             //armazenar o valor da condição dentro da variavel
+             var sx = 'F';
+             var masc;
+             if(sexo === 'M'){
+                 masc = true;
+             }else{
+                 masc = false;
+             }
+             //ou
+             var macho = (sx === 'M');
+             console.log(macho);
+
+        </script>
+    </body>
+</html>

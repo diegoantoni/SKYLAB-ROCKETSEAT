@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body>
+        <div id="app">
+            <input id="nome" />
+        </div>
+
+        <script>
+            //Cria um elemento html e joga na variavel nessa caso cria a tag <a>
+           var linkElement = document.createElement('a');
+           //seta paramentros na tag criada no createElement
+           linkElement.setAttribute('href', 'http://google.com');
+           linkElement.setAttribute('target', '_blank');
+           linkElement.setAttribute('rel', 'noopener');
+           
+           
+           //cria um elemento filho inserindo um texto entre a tag criada
+           var textElement = document.createTextNode('Acessar site');
+           linkElement.appendChild(textElement);
+            
+           //inseri no corpo do html atraves do id na tag div
+           var containerElement = document.querySelector('#app');
+           containerElement.appendChild(linkElement);
+
+           //removendo elementos do corpo do html
+           var inputElement = document.querySelector('#nome');
+           containerElement.removeChild(inputElement);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body> 
+        <button class="botao"> add</button><br><br>
+        <div id="app">
+
+        </div>
+        <script>
+
+                //var acessar = document.querySelector('div');
+                
+                var btnElement = document.querySelector('button.botao');
+                btnElement.onclick = function(){
+                var boxCaixa = document.createElement('div');
+                boxCaixa.style.height = '100px';
+                boxCaixa.style.width = '100px';
+                boxCaixa.style.backgroundColor = '#f00';
+                
+                var containerElement = document.querySelector('#app');
+                containerElement.appendChild(boxCaixa);
+                containerElement.appendChild(document.createElement('br'));
+            }    
+           
+            //gera cor em exdecimal
+            function getRandomColor(){
+                var letters = "0123456789ABCDEF";
+                var color = '#';
+                for(var i = 0; i < 6; i++){
+                    color += letters[Math.floor(Math.random()*16)];
+                }
+                return color;
+            }
+            
+            //criar sequencia  aleatorio
+            function random(number) {
+                return Math.floor(Math.random() * number);
+            }
+            // criar cores aleatorio em rgb
+            function bgChange() {
+                const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+                return rndCol;
+            }
+            
+            
+            const divs = document.querySelectorAll('div');
+            for (let i = 0; i < divs.length; i++){
+                divs[i].onmouseover = function(e){
+                    e.target.style.backgroundColor = bgChange();
+                    //manter div principal sempre em branco
+                    var id = document.getElementById('app');
+                    id.style.backgroundColor = 'rgb(255,255,255)';
+                    
+                }
+            }
+      
+        </script>
+    </body>
+</html>

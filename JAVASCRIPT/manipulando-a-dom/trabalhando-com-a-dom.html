@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" name="nome" id="nome" class="nome"/>
+           <!-- <input type="text" name="nome" id="nome2" /> -->
+            <button class="botao">Adicionar</button>
+        </div>
+
+        <script>
+            //busca elemento dentro da dom por id
+            var inputElement = document.getElementById('nome');
+
+            //se deixar dessa forma a função irar trazer todos os inputs da pagina criando um html coletion
+            //caso passe i um [0] no final da função ('input')[0] ira trazer apenas o primeiro
+            var inputElement2 = document.getElementsByTagName('input');
+            
+            //sempre ira retorna um vetor da classe especificada na funcao
+            var inputElement3 = document.getElementsByClassName('nome');
+
+            //percorre toda a arvore de elemento da dom procurando o q foi especificado na funcao
+            var inputElement4 = document.querySelector('div#app input');
+            var inputElement5 = document.querySelector('input[name=nome]');
+
+            //retorna todos os elementos referenciados na funcao com queryselector
+            var inputElement6 = document.querySelectorAll('input');
+            
+            //recuperando texto de um input 
+            var inputElement = document.querySelector('input[name=nome]');
+            //utilizando o queryselector pra dar funcionalidades na dom sem sujar o codigo html
+            var btnElement = document.querySelector('button.botao');
+            
+                btnElement.onclick = function(){
+                    var text = inputElement.value;
+                    alert(text);
+                }
+            
+
+            //console.log(inputElement);
+           // console.log(inputElement2);
+            //console.log(inputElement3);
+           // console.log(inputElement4);
+            //console.log(inputElement6);
+        </script>
+    </body>
+</html>

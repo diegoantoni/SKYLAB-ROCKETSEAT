@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf8'>
+        <title>Teste vetor</title>
+    </head>
+    <body>
+        <input type="text" name="nome">
+        <button onclick="adicionar()">add</button>
+
+        <script>
+            function adicionar(){
+                var getInput = document.querySelector('input[name=nome]');
+                var vetName = ['teste'];
+             
+                //pega valor dentro do input
+                var recebeInput = getInput.value;                
+
+                //limpar input apos cliar botao
+                if(recebeInput !=''){
+                    getInput.value='';
+                }
+                
+                console.log(vetName);
+            }
+        </script>
+    </body>
+</html>

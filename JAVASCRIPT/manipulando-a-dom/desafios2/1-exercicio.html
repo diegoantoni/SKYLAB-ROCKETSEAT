@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body>
+          <div id="app">
+            
+                <button onclick="criaCaixa()">add</button>
+                
+           
+          </div>
+        <script>
+            function criaCaixa(){
+                
+                var boxCaixa = document.createElement('div');
+                boxCaixa.style.height = '100px';
+                boxCaixa.style.width = '100px';
+                boxCaixa.style.backgroundColor = '#f00';
+                
+
+                var containerCaixa = document.querySelector('#app');
+                containerCaixa.appendChild(boxCaixa);
+                containerCaixa.appendChild(document.createElement('br'));
+            }    
+        </script>
+    </body>
+</html>

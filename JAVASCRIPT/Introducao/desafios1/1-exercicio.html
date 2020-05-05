@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Curso javascript
+        </title>
+    </head>
+    <body>
+        <script>
+            function recebeObjeto(objeto){
+                return objeto;
+            }
+            var endereco = {
+               rua: "Rua dos pinheiros",
+               numero: 1293,
+               bairro: "Centro",
+               cidade: "São Paulo",
+               uf: "SP"
+           };
+      
+
+        var exibi = recebeObjeto(endereco);
+        console.log('O usuário mora em ' + exibi.cidade + ' / ' + exibi.uf + ', no bairro '+ exibi.bairro +', na rua "'+exibi.rua+'" com n° '+exibi.numero+'.');
+    
+        </script>
+    </body>
+</html>
