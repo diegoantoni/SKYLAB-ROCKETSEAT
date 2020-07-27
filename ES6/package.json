@@ -1,0 +1,43 @@
+{
+  "name": "es6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-transform-async-to-generator": "^7.10.4",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development",
+    "build": "webpack --mode=production",
+    "dev1": "webpack --mode=development -w",
+    "dev2": "babel ./main.js -o ./bundle.js -w",
+    "classe": "babel ./classe/main.js -o ./classe/bundle.js -w",
+    "escopo": "babel ./constLet/main.js -o ./constLet/bundle.js -w",
+    "arr": "babel ./operacoesArray/main.js -o ./operacoesArray/bundle.js -w",
+    "flexa": "babel ./arrowfunc/main.js -o ./arrowfunc/bundle.js -w",
+    "vp": "babel ./valorPadrao/main.js -o ./valorPadrao/bundle.js -w",
+    "dtts": "babel ./desestruturacao/main.js -o ./desestruturacao/bundle.js -w",
+    "rs": "babel ./rest_spread/main.js -o ./rest_spread/bundle.js -w",
+    "tpl": "babel ./templateliterals/main.js -o ./templateliterals/bundle.js -w",
+    "oss": "babel ./objectshortsyntax/main.js -o ./objectshortsyntax/bundle.js -w",
+    "ex1": "babel ./desafio/exe01/main.js -o ./desafio/exe01/bundle.js -w",
+    "ex2": "babel ./desafio/exe02/main.js -o ./desafio/exe02/bundle.js -w",
+    "ex3": "babel ./desafio/exe03/main.js -o ./desafio/exe03/bundle.js -w",
+    "ex4": "babel ./desafio/exe04/main.js -o ./desafio/exe04/bundle.js -w",
+    "ex5": "babel ./desafio/exe05/main.js -o ./desafio/exe05/bundle.js -w",
+    "ex6": "babel ./desafio/exe06/main.js -o ./desafio/exe06/bundle.js -w",
+    "ex7": "babel ./desafio/exe07/main.js -o ./desafio/exe07/bundle.js -w"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}

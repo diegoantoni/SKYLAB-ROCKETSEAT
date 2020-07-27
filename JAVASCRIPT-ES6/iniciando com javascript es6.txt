@@ -1,0 +1,40 @@
+instalar o nodejs
+https://nodejs.org/en/
+
+instalar o yarn
+https://yarnpkg.com/getting-started/install
+
+inicializar o yarn dentro da pasta do projeto
+yarn init 
+sera criado um pacote json dentro da pasta do projeto
+onde sera criado as dependencias do projeto
+
+instalando dependencias com yarn, Babel
+yarn add @babel/cli
+yarn add @babel/preset-env
+yarn add @babel/core
+
+adicionar scripts dentro do package.json
+"scripts":{
+   "dev":"babel ./main.js -o ./bundle.js"
+}
+
+depois executar o script no terminal
+yarn dev
+o script ira criar o arquivo bundle.js no projeto que fara
+a conversao de script es6+ pra javascript anterior 
+
+rodar o babel toda vez q fizer uma alteraçao no arquivo principal
+do java script
+yarn dev
+
+yarn add @babel/plugin-proposal-object-rest-spread
+
+apos a instalaçao do rest-spread adicionar dentro do arquivo
+.babelrc 
+"plugins":["@babel/plugin-proposal-object-rest-spread"]
+
+
+
+
+

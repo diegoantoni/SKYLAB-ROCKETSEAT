@@ -1,0 +1,24 @@
+{
+  "name": "JAVASCRIPT-ES6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/preset-env": "^7.9.6"
+  },
+  "scripts": {
+    "dev": "babel ./main.js -o ./bundle.js -w",
+    "classe": "babel ./classes/classes.js -o ./classes/classBundle.js -w",
+    "constLet": "babel ./const_let/main.js -o ./const_let/bundle.js -w",
+    "op_array": "babel ./op_em_arrays/main.js -o ./op_em_arrays/bundle.js -w",
+    "arrow_fun": "babel ./arrow_function/main.js -o ./arrow_function/bundle.js -w",
+    "valor_padrao": "babel ./valores_padrao/main.js -o ./valores_padrao/bundle.js -w",
+    "desestruturacao": "babel ./desestruturacao/main.js -o ./desestruturacao/bundle.js -w",
+    "rest_spread": "babel ./rest_spread/main.js -o ./rest_spread/bundle.js -w",
+    "literals": "babel ./template_literals/main.js -o ./template_literals/bundle.js -w",
+    "1-exec": "babel ./Desafios/1-exec.js -o ./Desafios/1-bundle.js -w" 
+  }
+}

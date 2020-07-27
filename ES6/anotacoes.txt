@@ -1,0 +1,686 @@
+instalar o nodejs
+https://nodejs.org/en/
+
+instalar o yarn
+https://yarnpkg.com/getting-started/install
+
+inicializar o yarn dentro da pasta do projeto
+yarn init 
+sera criado um pacote json dentro da pasta do projeto
+onde sera criado as dependencias do projeto
+
+instalando dependencias com yarn, Babel
+yarn add @babel/cli
+yarn add @babel/preset-env
+yarn add @babel/core
+
+criar o arquivo .babelrc na raiz do projeto
+dentro do arquivo adicionar:
+{
+    "presets": ["@babel/preset-env"]
+}
+
+adicionar scripts dentro do package.json
+"scripts":{
+   "dev":"babel ./main.js -o ./bundle.js -w"
+}
+
+depois executar o script no terminal
+yarn dev
+o script ira criar o arquivo bundle.js no projeto que fara
+a conversao de script es6+ pra javascript anterior 
+
+rodar o babel toda vez q fizer uma alteraçao no arquivo principal
+do java script
+yarn dev
+
+yarn add @babel/plugin-proposal-object-rest-spread
+
+apos a instalaçao do rest-spread adicionar dentro do arquivo
+.babelrc 
+"plugins":["@babel/plugin-proposal-object-rest-spread"]
+========================================================
+CLASSES - aparti do es6
+========================================================
+definindo uma class e metodos
+class nomeclasse{
+    constructor(){
+        this.todos = []
+    }
+
+    nomemetodo(){
+        this.todos.push('Novo todo');
+        console.log(this.todos);
+    }
+}
+
+classes são como funções que qndo são chamadas executa alguma ação
+toda classe pode ou não ter o metodo constructor.
+
+metodo constructor - eo primeiro metodo que sera executado toda vez que uma 
+classe for extanciada, nele pode colocar acoes assim que o object e criado ou iniciar variaveis
+
+metodos - são as acoes funcionalidades de uma classe 
+
+extanciando um classe
+
+const teste = new nomeclasse();
+
+a variavel teste recebe todas as funcionalidades que contem dentro da classe 
+podendo assim fazer a chamada dessas funcionalidades e executar
+
+testando a classe extanciada 
+
+document.getElementByid('novotodo').onclick = function() {
+    teste.nomemetodo();
+}
+esse teste ira criar um nova posição dentro do array definido dentro do constructor da classe 
+
+HERANÇA DE CLASSE 
+e quando uma classe recebe os metodos de uma outra classe criada e consegue executar
+seus metodos. Para uma classe herda outra basta passar o paramentro 
+EXTENDS como no exemplo abaixo:
+class List{
+    constructor(){
+        this.data = []
+    }
+    add(data){
+        this.data.push(data);
+        console.log(this.data)
+    }
+}
+//todolist esta herdando os metodos de list
+class TodoList extends List {
+
+}
+
+depois pode estanciar a classe todolist e utilizar os metodos da classe list 
+
+const MinhaList = new TodoList();
+
+document.getElementByid('novotodo').onclick = function(){
+    MinhaList.add('New todo');
+}
+note que o metodo add não se encontra dentro da classe TodoList e sim dentro da classe List e a 
+classe estanciada esta sendo a TodoList mais como ela herda a classe List consegue utilizar seus metodos.
+
+e possivel tambem adiconar novos metodos em classes que herda uma outras como por exemplo 
+class TodoList extends List {
+    constructor(){
+        //faz uma chamada no metodo constructor da classe pai
+        super()
+        this.usuario = 'Diego'
+    }
+    mostraUsuario(){
+        console.log(this.usuario)
+    }
+
+}
+criasse um constructor para a classe que esta herdando e faz uma chamado pro constructor da classe pai 
+com o metodo super() depois e so adicionar novas variaveis ou acoes dentro do constructor e criar novos 
+metodos
+
+METODOS ESTATICOS -
+a classe não precisa ser estanciada para conseguir utilizar seus metodos, metodos staticos
+tambem não precisa de constructor pq não depende de nenhuma informação do resto da classe
+para executar suas ações. 
+geralmente so devolve o resultado de uma ação como por 
+exemplo um resultado de uma classe matematica que soma algo
+
+class Matematica {
+    static soma(a, b){
+        return a + b;
+    }
+}
+
+console.log(Matematica.soma(1, 2));
+=============================================================
+constantes e variaveis de escopo - const e let
+=============================================================
+---------------------
+constantes - const
+---------------------
+constante não pode ter o seu valor reatribuido, a constante 
+so pode ter seu valor multado 
+
+const usuario = {nome: 'diego'};
+usuario.nome = 'Cleiton';
+
+console.log(usuario);
+trabalha com o msm formato mais pode alterar valores
+-----------------------
+Variaveis de escopo - let
+-----------------------
+são variaveis que funciona somante dentro do escopo 
+onde elas foram declaradas, escopo e tudo que estiver dentro de {}
+como por exemplo as chaves de abertura e fechamento de uma função
+
+function teste(x){
+    let y = 2;
+
+    if(x > 5){
+        console.log(x, y);
+    }
+}
+teste(10)
+nesse exemplo o let y so e exergado dentro da função 
+se tentar acessar essa variavel fora da função ela não 
+estara disponivel
+=====================================================
+Operacoes com array - vetores
+=====================================================
+funções que sao utilizadas para realizar operaçoes 
+com vetores como por exemplo:
+const arr = [1,3,4,5,8,10]
+
+FUNÇÃO MAP - percorre todo o array e retorna alguma coisa
+com os dados do vetor seja um operação matematica ou os proprios 
+dados que contem no vetor, essa função tmbm pode receber uma função
+anonima as chamadas arrow function dentro dela temos dois paramentros
+que sera cada item que o map ira percorrer do vetor e seu indice.
+
+const newArr = arr.map(function(item, index){
+    return item + index
+})
+console.log(newArr)
+
+FUNÇÃO REDUCE - e utilizado para consumir todo o vetor 
+e transforma em uma unica informacao, junta todos os dados 
+e armazena em parametro da função anonima diferente do map 
+caso não seja passado nenhuma operação ou ação no retorno o primeiro 
+parametro recebe a primeira posição do vetor eo segundo paramentro recebe 
+a ultima posição do vetor, caso tenha ação como no caso abaixo percorrerar 
+o vetor e realizar a soma de todos os items do array retorna apenas um valor
+
+const sum = arr.reduce(function(total, next){
+    return total + next;
+})
+console.log(sum);
+
+FUNÇÃO FILTER - e utlizado para filtar e retorna uma informação 
+de acordo com a operação passada no retorno, obrigatoriamente
+a operação tem q retorna um valor true ou false para que o filtro 
+seja realizado e informação desejada seja retorna, no exemplo abaixo
+a funçao percorre todo o array e de acordo com a operação no return 
+retorna somante os numeros que forem par 
+
+const filter = arr.filter(function(item){
+    return item % 2 === 0;
+})
+console.log(filter)
+
+FUNÇÃO FIND - procura e caso encontre dentro do array retorna o valor especificado 
+na operação, caso não encontrar retorna undefined
+
+const find = arr.find(function(item){
+    return item === 2;
+})
+console.log(find)
+==================================================
+ARROW FUNCTION 
+==================================================
+são utilizadas para subistituir funções anonimas 
+ou seja funçoes que não tem nomeação como function(){}
+e para diminuir a quantidade de codigo 
+
+uso inicial de uma arrow function
+const arr = [1,3,4,5,6]
+const newArr = arr.map( (item) => {
+    return item * 2
+})
+console.log(newArr)
+
+qndo a funçao recebe apenas um paramentro os parenteses podem ser removidos
+const newArr = arr.map( item => {
+    return item * 2
+})
+console.log(newArr)
+
+qndo a funçao retorna apenas uma ação e não um conjunto de ações 
+podemos omitir o return e as chaves informando tudo dentro do parenteses
+nessa caso da funçao map
+const newArr = arr.map( item => item * 2)
+console.log(newArr)
+
+qndo se tem uma funçao nomeada não e recomandado o uso de arrow function,
+somante e recomendado nos casos de calback que e a passagem de funçao dentro de uma outra 
+função 
+
+retonar objeto atraves de uma arrow function 
+
+lembrando que essa forma não e recomendada e so por didatica 
+
+const teste = () => ({nome: 'diego'});
+console.log(teste());
+================================================
+VALORES PADROES
+================================================
+são valores definidos dentro dos paramentros das funçoes
+para caso qndo a função for chamada e esquece de passar seus 
+paramentros não retorna um erro e seguir o fluxo normal da aplicação
+exemplo:
+
+function soma(a, b){
+    return a + b
+}
+console.log(soma(1));
+console.log(soma());
+dessa forma como os parametros não tem um valor padrao dentro a função 
+ira retorna NaN porque não consiguiu encontrar os parametros necessarios 
+para realizar a ação, para evitar isso basta passar valores padrao para os 
+paramentros dentro da função:
+
+function soma(a=1, b=2){
+    return a + b
+}
+console.log(soma(1));
+console.log(soma());
+dessa forma casa algum paramentro não for passado qndo a funçao for 
+chamada, os paramento recebe os valores setados por padrao e segue o fluxo 
+normal.
+utilizando arrow function com valores padroes
+const sum = (a=1, b=2) => a + b;
+console.log(sum(1));
+console.log(sum());
+====================================================
+Desestruturação
+====================================================
+E uma forma mais simples de acessar dados, uma forma mais 
+reduzida e direta no caso de objetos por exemplo podemos 
+acessar varios dados definindo um novo objeto não nomeado 
+que contem parametros referenciando a mesma estrutura e nome 
+dos dados de um objeto existente e
+por exemplo:
+const usuario = {
+    nome: 'diego',
+    idade: 23,
+    endereco: {
+        cidade: 'Rio do Sul',
+        estado: 'SC',
+    },
+};
+
+const {nome, idade, endereco:{cidade} } = usuario;
+console.log(nome, idade, cidade);
+
+
+utilizando o desestruturação em função, os paramentros da função 
+recebe um objeto com os paramentros de outro objeto e quando for 
+chamada deve receber o objeto 
+function mostraNome({nome, idade}){
+    console.log(nome, idade);
+}
+mostraNome(usuario);
+===========================================
+OPERADORES REST-SPREAD
+===========================================
+antes de utilizar esses operadores e necessario 
+instalar um pacote na forma de plugin 
+yarn add @babel/plugin-proposal-object-rest-spread
+e adicionar dentro do .babelrc a linha
+"plugin":["@babel/plugin-proposal-object-rest-spread"]
+
+REST - server para pegar o resto das propriedades de um 
+objeto por exemplo ou resto de parametros de funções e ate 
+mesmo em vetores, o sintaxe para o utilizar o rest são os 
+...nome variavel que ira receber o resto dos valores 
+exemplo:
+
+const usuario = {
+    nome: 'diego',
+    idade:23,
+    empresa: 'Rocketseat'
+};
+
+const {nome, ...resto} = usuario;
+console.log(nome);
+console.log(resto)
+
+nessa exemplo a variavel nome recebeu o nome que conte no objeto eo 
+...resto recebe todo o resto do objeto.
+
+const arr = [1, 2, 3, 4];
+const [a, b, ...c] = arr; 
+console.log(a);
+console.log(b);
+console.log(c);
+
+da mesma forma que no exemplo acima so que utilizando array 
+
+o rest operator tmbm e muito ultilizado para parametro de função 
+
+function soma(...params){
+    return params.reduce((total, next) => total + next);
+}
+console.log(soma(1, 2, 4, 5, 6))
+nesse exemplo o rest ...params recebera todos os paramentros idependente 
+do quantos seja e ira realizar a soma 
+
+function soma2(a, b, ...params){
+    return params;
+}
+console.log(soma(1, 3, 4, 5, 4));
+nesse exemplo o parametro a e b recebe 1 e 3 e todo resto vai para o params 
+
+SPREAD - faz o papel de propagar de repassar as informaçoes de um objeto 
+ou array para outra estrutura de dados
+exemplo:
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const arr3 = [...arr1, ...arr2];
+console.log(arr3)
+nesse escopo o ...arr1 eo ...arr2 esta repassando as informaçoes do 
+vetor 1 e 2 para o vetor 3 
+
+const usuario1 = {
+    nome: 'diego',
+    idade: 23,
+    empresa: 'Rocketseat'
+};
+
+const usuario2 = {...usuairo1, nome: 'Gabriel'};
+console.log(usuario2);
+
+nesse exemplo o objeto usuario2 recebe todas as propiedades e informações 
+do objeto usuairo1, e como não pode exister dois objetos com as msm informações 
+o parametro nome e alterado para gabriel no usuario2 e o resta das informaçoes 
+continua as msm
+=========================================================
+TEMPLATE LITERALS
+=========================================================
+e uma forma mais limpa de trabalha com a escrita de string juntamento com 
+as variaveis sem precisar concatenar com o sinal de + nesse caso utilizasse 
+as acrase `` para imprimir na tela
+const user = {
+    nome: 'Diego',
+    idade: 24
+}
+
+console.log(`o nome do usuario e ${user.nome} e tem ${user.idade} anos`);
+=========================================================
+object Short Syntax - sintaxe curta de objeto
+=========================================================
+e quando precisa repassar informação de uma variavel para 
+um valor de parametros de um objeto e somente uma forma mais simples 
+e curta de escrita
+
+const nome = 'diego'
+const idade = 24
+
+const usuario = {
+    nome,
+    idade,
+    empresa: 'Rocketseat',
+};
+console.log(usuario)
+
+qndo a variavel tem o msmo nome do parametro dentro do objeto não precisa 
+explicitar escrevendo o nome da variavel no parametro do objeto conforme 
+o exemplo acima.
+===========================================================================
+WEBPACK
+===========================================================================
+webpack e como se fosse um serviço que nos permite trabalhar com varios arquivos js 
+na nossa aplicação, podemos ter varias pasta não so js podemos trabalhar tmbm com 
+arquivos de imagens, json, css tudo com o js atraves do webpack e ainda todos 
+esses arquivos sera possivel ser transpilado convertido em um bundle.js pra codigo
+anterior ao es6
+----------------------
+configurando o webpack 
+----------------------
+adicionando a dependencia com dependencia de desenvolvimento
+yarn add webpack webpack-cli -D
+depois de instalar, criar um arquivo de configuração do webpack na raiz do projeto
+esse sempre sera o arquivo principal de configuração   
+chamado:
+webpack.config.js - dentro do arquivo 
+module.exports = {
+    entry: './main.js',
+    output:{
+        path: __dirname,
+        filename: 'bundle.js',
+    },
+    module: {
+        rules:[
+            {
+                //expressao regular que indica em qual tipo de arquivo deve funcionar
+                test: /\.js$/,
+                //funcionar somante nos arquivos fora da node_modules
+                exclude: /node_modules/,
+                use:{
+                    loader: 'babel-loader',
+                }
+            }
+        ],
+    },
+};
+
+instalar o babel loader 
+yarn add babel-loader -D
+
+entry - primeiro propriedade obrigatora, basicamente fala qual eo arquivo principal
+
+output - basicamente fala para qual lugar e arquivo que vai o codigo convertido do es6
+
+path - contem o caminho de algum diretorio
+dirname - contem o caminho atual onde o arquivo webpack esta
+filename - nome do arquivo que ira receber o codigo es6 convertivo
+
+rules - propriedade obrigatoria dentro do module, ele e responsavel por dizer 
+como o webpack deve se comportar qndo o usuario estiver tentanto import novos
+arquivos js. ira falar qual loader deve utilizar, no caso o babel que e um load 
+forma de manipular o conteudo do arquivo e fazer algum tipo de alteração, toda vez 
+que a aplicação importa um novo arquivo js ele ira executar o babel sozinho sem
+precisar ter q deixar o babel rodando em background 
+
+alterar o script 'dev' dentro do package.json para 
+"webpack --mode=development -w"
+
+testar o webpack executando o script dev 
+yarn dev
+
+criar os arquivos para teste 
+funcoes.js - dentro do arquivo
+export function soma(a,b){
+    return a + b
+}
+
+chamar o arquivo dentro do main.js
+import {soma} from './funcoes';
+console.log(soma(1,2));
+============================
+IMPORT/EXPORT 
+============================
+EXPORT - e utilizado qndo deseja utilizar alguma função ou ação criada, 
+em varias partes de um projeto. 
+exemplo:
+arquivo funcoes.js 
+export function soma(a,b){
+    return a + b;
+}
+export funciona sub(a,b){
+    return a - b
+}
+aparti de agora posso importa a funçao soma q esta dentro do arquivo funcoes.js 
+em qualquer arquivo do projeto e utilizala, obs utilizando esse tipo de export 
+qndo for importa a funçao deve conter o msm nome no arquivo de destino.
+
+EXPORT DEFAULT - muito utilizado qndo se trabalha com frameworks como react, vue
+e qndo um arquivo fornece apenas uma função nele ou um classe, etc como por exemplo:
+arquivo - soma.js 
+export default function soma(a,b){
+    return a + b;
+}
+nesse exemplo o arquivo soma fornece apenas uma funcionalidade, obs na hora de importa 
+essa funçao como ele tem o expor default não precisa obrigatoriamente utilizar o msm 
+nome da função que contem dentro do arquivo como ele possiu apenas uma funcionalidade 
+pode ser atribuida a qualquer nome no arquivo destino
+
+obs: Dentro de um arquivo onde contenho varias funcionalidades posso ter tanto o 
+export qnto o export default, lembrando que cada arquivo so pode ter apenas um export default 
+arquivo - variasfunc.js 
+export function soma(a,b){
+    return a + b
+}
+export default function sub(a,b){
+    return a - b
+}
+
+IMPORT - e utilizado pra importa funcionalidades, acoes, etc de arquivos que utiliza 
+export, assim que importado e possivivel fazer uso de funcionalidades de outros arquivos 
+dentro do arquivo atual, obs qndo o export não contem o default obrigatoriamento o import 
+deve conter chaves depois da palavra reservado import e antes do from e o nome dentro das 
+chaves deve ser o mesmo da funcionalidade do arquivo './funcoes' de onde esta vindo a exportação
+ 
+exemplo:
+arquivo - main.js - importando do arquivo funcoes acima 
+import {soma, sub} from './funcoes'
+console.log(soma(1,2));
+console.log(sub(1,2));
+
+obs:caso deseje por algum motivo fazer uma renomeação de funcionalidade que vem de um export simples 
+pode utilizar o paramento 'as'
+exemplo:
+import {soma as somaf} from './funcoes'
+
+qndo o arquivo de onde esta sendo importa alguma funcionalidade contem o export default 
+não precisa fazer o uso de chaves e o nome da variavel que receberar o import não precisa ser 
+o mesmo como por exemplo:
+arquivo - main.js importando do soma.js q conte apenas um funcionalidade com export default 
+import somafunction from './soma'
+console.log(somafunction(1,4))
+
+quando um arquivo contem tanto export qnto export default a importa dever ser da seguinte forma
+arquivo main.js import do arquivo variasfunc.js 
+
+import subVariasfunc, {sub} from './variasfunc'
+
+o que esta fora das chaves ea funçao que contem export default eo que esta entre as chaves 
+eo export simples.
+
+importando varias funçoes de um arquivo em uma unica variavel 
+
+import * as func from './funcoes';
+console.log(fun.soma(1,2))
+console.log(fun.sub(4,2))
+esse tipo de importanção trasnforma o func em um objeto contendo todas 
+as funcoes do arquivo fuções
+=====================================================================
+WEBPACK DEV SERVER 
+=====================================================================
+organizando a estrutura de pastas 
+criar duas pastas na raiz:
+pasta - public 
+pasta - src
+
+src - ficara todo codigo js que sera utilizado na aplicação q o 
+webpack precisa monitora as mudanças 
+mover o arquivo main.js para essa pasta 
+
+public - ficara todo arquivo que não sera trabalhado diretamento 
+com webpack 
+mover o arquivo index.html para essa pasta
+
+alterar o arquivo webpack.confi.js pq alguns arquivos mudaram de diretorio 
+em entry alterar para o novo caminho do main.js './src/main.js
+e em output em path alterar para __dirname + '/public'
+
+INSTALANDO O WEBPACK DEV SERVER 
+yarn add webpack-dev-server -D
+apos a instalação add dentro do webpack.config antes do module 
+
+devServer:{
+    contentBase: __dirname + '/public'
+}
+eo caminho onde ele deve abrir o servidor, geralmente o caminho do index.html
+apos isso alterar mais uma vez o package.json o script 'dev' para 
+"webpack-dev-server --mode=development"
+gerar o bundle.js em produção - add dentro do package.json o script build com 
+"webpack --mode=production"
+============================================================================
+ASYNC-AWAIT
+============================================================================
+e uma nova forma de trabalha com programação asincrona no javascript, uma nova 
+forma de se trabalha com promisses em vez de ficar utilizando o callback com then eo catch. 
+promisses são muito utilizadas para trabalhar com requisições a api para aguarda sua resposta.
+
+criando promisses de forma manual antes do es6 com js puro:
+const minhaPromisse = () => new Promise((resolve, reject)=>{
+    setTimeout(()=>{resolve('ok')}, 2000);
+});
+
+minhaPromisse().then(response =>{
+    console.log(response);
+}).catch(err =>{
+    return erro
+})
+
+utilizando async-await - para utilizar esse metodo sempre precisa esta por volta de um funçao
+e preciso tmbm instalar algumas bibliotecas para tabalha com o babel:
+yarn add @babel/plugin-transform-async-to-generator -D 
+yarn add @babel/polyfill -D 
+
+apos isso add dentro do babelrc dentro de plugins 
+"@babel/plugin-transform-async-to-generator"
+
+depois dentro do webpack.config transforma o entry em um array e add o polyfill 
+entry: ['@babel/polyfill','./src/main.js'],
+
+
+async function executaPromise(){
+    const response = await minhaPromisse();
+    console.log(response) 
+}
+
+executaPromise();
+
+obs:toda função que utiliza async automaticamente vira um promise.
+outra coisa o await nunca podera ser utilizado sem ter um async antes
+
+utilizando async-await com arrow function 
+const executaPromise = async () =>{
+    console.log(await minhaPromisse());
+    console.log(await minhaPromisse());
+    console.log(await minhaPromisse());
+};
+executaPromise();
+==============================================================
+CONFIGURANDO O AXIOS
+==============================================================
+biblioteca utilizado para trabalha com async await, que realiza 
+acessos a api de um backend por exemplo realizando requisições http 
+
+instalando o axios:
+yarn add axios 
+
+utilizando o axios: dentro do arquivo que fara a chamada a alguma api importa o axios 
+
+import axios from 'axios';
+
+utilizando async await em classes 
+class Api {
+    static async getUserInfo(username){
+        try{
+            const response = await axios.get(`https://api.github.com/user/${username}`);
+            console.log(response);
+        }catch (err){
+            console.warn('Erro na API');
+        }
+    }
+}
+
+//forma correta 
+Api.getUserInfo('diegoantoni');
+//força o erro
+Api.getUserInfo('diegoooooo');
+
+o try catch serve para tratar os erros que pode acontecer durante a chamado da api 
+o conteudo que estiver dentro do escopo{} do try retorna de estiver tudo certo eo 
+conteudo que estiver dentro do catch so retorna caso aconteça algum erro.
+
+
+
+
+
+ 
