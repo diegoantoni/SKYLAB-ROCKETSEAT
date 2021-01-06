@@ -38,6 +38,6 @@
     "ex7": "babel ./desafio/exe07/main.js -o ./desafio/exe07/bundle.js -w"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.1"
   }
 }
